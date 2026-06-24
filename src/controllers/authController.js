@@ -2,6 +2,10 @@ import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/user.model.js";
+import { OTP } from "../models/otp.model.js";
+import { sendEmail } from "../utils/sendMail.js";
+import { otpTemplate } from "../templates/otp.template.js";
+
 
 
 const generateRefreshAndAccessToken = async(userId) => {
@@ -161,4 +165,77 @@ const refreshAccessToken = asyncHandler(async(req,res)=>{
 
 
 
-export {registerUser,loginUser}
+
+
+const sendOTP = asyncHandler(async(req,res)=>{
+
+
+const {email}=req.body;
+
+
+const otp =Math.floor(100000 + Math.random()*900000).toString();
+
+await OTP.create({
+    email,
+    otp,
+    expiresAt:
+    new Date(Date.now()+10*60*1000)
+});
+
+await sendEmail({
+    email,
+    subject:"Your EventX OTP",
+    html:otpTemplate(otp)
+
+});
+
+
+return res.status(200).json({
+
+    message:"OTP sent successfully"
+
+});
+});
+
+
+const verifyOTP = asyncHandler(async(req,res)=>{
+const {email,otp}=req.body;
+
+
+const storedOTP = await OTP.findOne({
+    email,
+    otp
+});
+
+
+if(!storedOTP){
+    throw new ApiError(
+        400,
+        "Invalid OTP"
+    );
+
+}
+
+if(storedOTP.expiresAt < new Date()){
+    throw new ApiError(
+        400,
+        "OTP expired"
+    );
+
+}
+
+await OTP.deleteOne({
+    _id:storedOTP._id
+});
+
+
+return res.status(200).json({
+
+    message:"OTP verified"
+
+});
+
+});
+
+
+export {registerUser,loginUser,verifyOTP,sendOTP}

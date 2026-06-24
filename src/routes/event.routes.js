@@ -16,4 +16,5 @@ eventRouter.delete("/delete/:eventId",verifyJWT, deleteEvent)
 eventRouter.get("/", getAllEvents)
 eventRouter.get("/my-events", verifyJWT, getOrganizerEvents)
 eventRouter.get("/:eventId", getEventDetails)
+
 export default eventRouter;

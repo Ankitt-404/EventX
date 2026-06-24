@@ -10,6 +10,7 @@ import { User } from "../models/user.model.js";
 import { Event } from "../models/event.model.js";
 import e from "express";
 import { Booking } from "../models/booking.model.js";
+import { sendEmail } from "../utils/sendMail.js";
 const createEvent = asyncHandler(async(req,res)=>{
 
     const {
@@ -269,6 +270,31 @@ if(existingBooking){
 
     await event.save();
 
+    //confirmation email
+    await sendEmail({
+        to : req.user.email,
+        subject : "Event booking confirmed",
+        message:
+        `
+    Hello ${req.user.username},
+
+    Your booking is confirmed.
+
+    Event: ${event.title}
+
+    Tickets: ${tickets}
+
+    Total Amount: ₹${totalPrice}
+
+    Venue: ${event.venue}
+
+    Date: ${event.startDate}
+
+    Thank you for booking with EventX.
+    `
+    })
+
+
 
     return res.status(200).json(
         new ApiResponse(
@@ -423,7 +449,9 @@ const cancelTicket = asyncHandler(async (req, res) => {
 
     }
 
-    await Booking.findByIdAndDelete(bookingId);
+     booking.status = "cancelled";
+
+     await booking.save();
 
 
     return res.status(200).json(
@@ -435,5 +463,19 @@ const cancelTicket = asyncHandler(async (req, res) => {
     );
 
 });
-export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket}
+
+//create admin dashboard showing revenue
+//otp verification
+//event history of the user 
+const getBookingHistory = asyncHandler(async(req,res)=>{
+    const bookings = await Booking.find({
+        user : req.user._id
+    }).populate("event","title venue startDate endDate ticketPrice").sort({
+        createdAt : -1
+    })
+
+
+return res.status(200).json( new ApiResponse(200, "Booking history fetched successfully"))
+})
+export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket,getBookingHistory}
 

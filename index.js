@@ -1,12 +1,18 @@
-import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
+dotenv.config({
+    path : "./.env"
+});
+console.log(process.env.SMTP_EMAIL);
+
+import express from "express";
+
+import cors from "cors";
 import mongoose from "mongoose";
 import Router from "./src/routes/user.routes.js";
 import eventRouter from "./src/routes/event.routes.js";
 import bookingRouter from "./src/routes/booking.routes.js";
 
-dotenv.config();
+
 mongoose.connect(process.env.MONGO_URI)
 .then(()=> console.log("MongoDB is connected")).catch((err)=> console.log(err));
 
