@@ -2,7 +2,7 @@
 //event for main logic 
 //booking for transactional
 // controllers/event.controller.js
-
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -24,8 +24,14 @@ const createEvent = asyncHandler(async(req,res)=>{
         category,
         status
     } = req.body;
-
-
+    const bannerLocalPath = req.file?.path
+    if(!bannerLocalPath){
+        throw new ApiError(400, "Event banner is required")
+    }
+    const uploadedBanner = await uploadOnCloudinary(bannerLocalPath)
+    if(!uploadedBanner){
+        throw new ApiError(500, "Failed to upload Event banner")
+    }
     const fields = {
         title,
         description,
@@ -79,7 +85,11 @@ const createEvent = asyncHandler(async(req,res)=>{
         totalSeats,
         organiser: req.user._id,
         bookedSeats: 0,
-        status: status || "pending"
+        status: status || "pending",
+       banner: {
+      url: uploadedBanner.secure_url,
+      publicId: uploadedBanner.public_id,
+    },
     });
 
 

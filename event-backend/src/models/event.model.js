@@ -24,6 +24,10 @@ const eventSchema = new mongoose.Schema({
         type : Number,
         default : 0
     }, 
+   banner: {
+  url: String,
+  publicId: String,
+},
     status : {
         type : String,
         enum : [
