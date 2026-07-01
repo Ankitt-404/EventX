@@ -1,13 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 import Home from './pages/home.jsx'
-import AdminDashboard from './pages/adminDashboard.jsx'
 import EventsPage from './pages/events.jsx'
 import Auth from './pages/Auth.jsx'
+import EventDetails from './pages/eventDetails.jsx'
+import BookingPage from './pages/bookingPage.jsx'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BookingConfirmed from './pages/bookingConfirmed.jsx'
+import MyBookings from './pages/myBookings.jsx'
+import MyTicket from './pages/myTickets.jsx'
+import CancelBooking from './pages/cancelBooking.jsx'
+import AdminDashboard from './pages/adminDashboard.jsx'
+import AdminRoute from './components/adminRoute.jsx'
+import { AdminProvider } from './context/AdminContext.jsx'
 function App() {
 
 
@@ -16,9 +21,25 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<EventsPage />} />
-        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/auth" element={<Auth />} />
-      </Routes>
+        <Route path="/events/:eventId" element={<EventDetails/>} />
+        <Route path="/book/:eventId" element={<BookingPage />} />
+        <Route path="/booking-confirmed" element={<BookingConfirmed />} />
+        <Route path="/my-bookings" element={<MyBookings />} />
+        <Route path="/my-ticket/:bookingId" element={<MyTicket />} />
+        <Route path="/cancel-booking/:bookingId" element={<CancelBooking />} />
+
+    <Route
+  path="/admin"
+  element={
+    <AdminProvider>
+      <AdminRoute>
+        <AdminDashboard />
+      </AdminRoute>
+    </AdminProvider>
+  }
+/>
+ </Routes>
     </BrowserRouter>
   )
 }

@@ -1,122 +1,95 @@
-import { useEffect, useState } from "react";
-import "./admin.css";
-import { getAllEvents } from "../services/event.service.js";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
 
-const formatEventMeta = (event) => {
-  const location = event.location || event.city || "Location not set";
-  const category = event.category || "General";
-  const price = event.price || event.ticketPrice || event.amount;
-  const priceText = price ? `Rs ${price}` : "Free";
-
-  return `${location} - ${category} - ${priceText}`;
-};
+import { useAdmin } from "../context/AdminContext";
+import "./AdminDashboard.css";
 
 function AdminDashboard() {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { adminOverview, revenueChart, loading } = useAdmin();
 
-  useEffect(() => {
-    const loadEvents = async () => {
-      try {
-        const data = await getAllEvents();
-        setEvents(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error(err);
-        setError("Unable to load dashboard data");
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (loading) {
+    return <main className="adminPage">Loading admin dashboard...</main>;
+  }
 
-    loadEvents();
-  }, []);
-
-  const pendingEvents = events.filter(
-    (event) => event.status === "pending" || event.isApproved === false
-  );
-  const approvalEvents = pendingEvents.length > 0 ? pendingEvents : events.slice(0, 3);
+  const chartData = revenueChart.map((item) => ({
+    month: `${item._id.month}/${item._id.year}`,
+    revenue: item.revenue,
+    bookings: item.bookings,
+  }));
 
   return (
-    <main className="admin-page">
-      <aside className="admin-sidebar">
-        <h1 className="admin-logo">Event<span>X</span></h1>
-
-        <nav>
-          <a className="active">Dashboard</a>
-          <a>Events</a>
-          <a>Bookings</a>
-          <a>Users</a>
-          <a>Revenue</a>
-          <a>Settings</a>
-        </nav>
+    <main className="adminPage">
+      <aside className="adminSidebar">
+        <h1>EventX</h1>
+        <a>Overview</a>
+        <a>Pending Events</a>
+        <a>Users</a>
+        <a>Bookings</a>
+        <a>Revenue</a>
       </aside>
 
-      <section className="admin-main">
-        <div className="admin-header">
-          <div>
-            <p className="admin-tag">ADMIN CONTROL CENTER</p>
-            <h2>Dashboard Overview</h2>
-          </div>
-
-          <button className="admin-btn">Approve Events</button>
+      <section className="adminMain">
+        <div className="adminHeader">
+          <p>ADMIN PANEL</p>
+          <h2>Revenue Monitoring</h2>
         </div>
 
-        <div className="stats-grid">
-          <div className="stat-card">
-            <p>Total Events</p>
-            <h3>{loading ? "..." : events.length}</h3>
-            <span>{error || "From database"}</span>
+        <div className="overviewGrid">
+          <div className="overviewCard">
+            <span>Total Revenue</span>
+            <h3>₹{adminOverview.totalRevenue}</h3>
           </div>
 
-          <div className="stat-card">
-            <p>Total Bookings</p>
-            <h3>-</h3>
-            <span>Needs bookings API</span>
+          <div className="overviewCard">
+            <span>Total Bookings</span>
+            <h3>{adminOverview.totalBookings}</h3>
           </div>
 
-          <div className="stat-card">
-            <p>Total Users</p>
-            <h3>-</h3>
-            <span>Needs users API</span>
+          <div className="overviewCard">
+            <span>Tickets Sold</span>
+            <h3>{adminOverview.ticketsSold}</h3>
           </div>
 
-          <div className="stat-card">
-            <p>Revenue</p>
-            <h3>-</h3>
-            <span>Needs revenue API</span>
+          <div className="overviewCard">
+            <span>Pending Events</span>
+            <h3>{adminOverview.pendingEvents}</h3>
+          </div>
+
+          <div className="overviewCard">
+            <span>Total Users</span>
+            <h3>{adminOverview.totalUsers}</h3>
+          </div>
+
+          <div className="overviewCard">
+            <span>Organisers</span>
+            <h3>{adminOverview.totalOrganisers}</h3>
           </div>
         </div>
 
-        <div className="admin-content">
-          <div className="panel">
-            <h3>Pending Event Approvals</h3>
+        <div className="chartCard">
+          <h3>Revenue Trend</h3>
 
-            {loading && <p>Loading events...</p>}
-            {!loading && approvalEvents.length === 0 && <p>No events found.</p>}
-            {!loading &&
-              approvalEvents.map((event) => (
-                <div className="event-row" key={event._id || event.id}>
-                  <div>
-                    <h4>{event.title || event.name || "Untitled event"}</h4>
-                    <p>{formatEventMeta(event)}</p>
-                  </div>
-                  <div className="row-actions">
-                    <button className="approve">Approve</button>
-                    <button className="reject">Reject</button>
-                  </div>
-                </div>
-              ))}
-          </div>
-
-          <div className="panel small-panel">
-            <h3>Quick Actions</h3>
-
-            <button>View All Events</button>
-            <button>Manage Users</button>
-            <button>View Bookings</button>
-            <button>Revenue Report</button>
-          </div>
+          <ResponsiveContainer width="100%" height={320}>
+            <LineChart data={chartData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.1)" />
+              <XAxis dataKey="month" stroke="#aaa" />
+              <YAxis stroke="#aaa" />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke="#9b9bff"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </section>
     </main>

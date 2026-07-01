@@ -11,6 +11,7 @@ import mongoose from "mongoose";
 import Router from "./src/routes/user.routes.js";
 import eventRouter from "./src/routes/event.routes.js";
 import bookingRouter from "./src/routes/booking.routes.js";
+import adminRouter from "./src/routes/admin.routes.js";
 
 
 mongoose.connect(process.env.MONGO_URI)
@@ -18,7 +19,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin : "http://localhost:5173",
+    credentials : true
+}));
 app.use(express.json());
 
 app.get("/", (req,res)=>{
@@ -33,3 +37,4 @@ app.use(express.json());
 app.use("/api/v1/users", Router)
 app.use("/api/v1/events", eventRouter)
 app.use("/api/v1/booking",bookingRouter)
+app.use("/api/v1/admin", adminRouter)

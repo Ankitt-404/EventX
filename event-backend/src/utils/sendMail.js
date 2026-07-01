@@ -2,24 +2,11 @@ import transporter from "./mailer.js";
 
 
 
-export const sendEmail = async({
-    email,
+export const sendEmail = async ({ to, subject, html }) => {
+  await transporter.sendMail({
+    from: process.env.SMTP_EMAIL,
+    to,
     subject,
-    html
-})=>{
-
-
-await transporter.sendMail({
-
-    from:`EventX <${process.env.SMTP_EMAIL}>`,
-
-    to:email,
-
-    subject,
-
-    html
-
-});
-
-
+    html,
+  });
 };

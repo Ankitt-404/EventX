@@ -1,0 +1,131 @@
+.ticketPage {
+  min-height: 100vh;
+  padding: 60px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(76, 90, 255, 0.35), transparent 30%),
+    #080808;
+  color: white;
+  font-family: Inter, sans-serif;
+}
+
+.ticketCard {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.ticketLeft {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+}
+
+.ticketBanner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ticketInfo {
+  padding: 34px;
+}
+
+.ticketTag {
+  color: #9b9bff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.ticketInfo h1 {
+  margin: 14px 0;
+  font-size: 46px;
+  line-height: 1;
+}
+
+.ticketDesc {
+  color: #c9c9c0;
+  line-height: 1.7;
+}
+
+.ticketGrid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.ticketGrid span {
+  color: #999;
+  font-size: 13px;
+}
+
+.ticketGrid strong {
+  display: block;
+  margin-top: 6px;
+}
+
+.ticketRight {
+  padding: 34px;
+  border-left: 1px dashed rgba(255,255,255,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticketRight h2 {
+  margin-bottom: 20px;
+}
+
+.qrBox {
+  padding: 16px;
+  border-radius: 18px;
+  background: white;
+}
+
+.bookingId {
+  margin: 22px 0;
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.bookingId span {
+  color: white;
+  word-break: break-all;
+}
+
+.ticketRight button {
+  border: none;
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: white;
+  color: black;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media(max-width: 900px) {
+  .ticketPage {
+    padding: 25px;
+  }
+
+  .ticketCard,
+  .ticketLeft {
+    grid-template-columns: 1fr;
+  }
+
+  .ticketRight {
+    border-left: none;
+    border-top: 1px dashed rgba(255,255,255,0.25);
+  }
+
+  .ticketBanner {
+    height: 260px;
+  }
+}

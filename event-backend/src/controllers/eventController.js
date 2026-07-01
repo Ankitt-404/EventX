@@ -322,7 +322,7 @@ if(existingBooking){
 const listAllEvents = asyncHandler(async (req, res) => {
 
     const events = await Event.find({
-        status: "approved"
+        status: "Approved"
     })
     .populate("organiser", "username email")
     .sort({ createdAt: -1 });
@@ -400,33 +400,25 @@ const getOrganizerEvents = asyncHandler(async (req, res) => {
 });
 
 const getUserBookings = asyncHandler(async (req, res) => {
-
-    const bookings = await Booking.find({
-        user: req.user._id
+  const bookings = await Booking.find({
+    user: req.user._id,
+  })
+    .populate({
+      path: "event",
+      populate: {
+        path: "organiser",
+        select: "username email",
+      },
     })
-    .populate(
-        "event",
-        "title description venue startDate endDate ticketPrice category"
-    )
     .sort({ createdAt: -1 });
 
-
-    if(bookings.length === 0){
-        throw new ApiError(
-            404,
-            "No bookings found"
-        );
-    }
-
-
-    return res.status(200).json(
-        new ApiResponse(
-            200,
-            bookings,
-            "User bookings fetched successfully"
-        )
-    );
-
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      bookings,
+      "Bookings fetched successfully"
+    )
+  );
 });
 
 const cancelTicket = asyncHandler(async (req, res) => {
@@ -459,7 +451,7 @@ const cancelTicket = asyncHandler(async (req, res) => {
 
     }
 
-     booking.status = "cancelled";
+     booking.status = "Cancelled";
 
      await booking.save();
 
@@ -487,5 +479,39 @@ const getBookingHistory = asyncHandler(async(req,res)=>{
 
 return res.status(200).json( new ApiResponse(200, "Booking history fetched successfully"))
 })
-export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket,getBookingHistory}
+
+const getBookingById = asyncHandler(async (req, res) => {
+  const { bookingId } = req.params;
+
+  const booking = await Booking.findById(bookingId)
+    .populate({
+      path: "event",
+      populate: {
+        path: "organiser",
+        select: "username email",
+      },
+    })
+    .populate({
+      path: "user",
+      select: "username email fullname",
+    });
+
+  if (!booking) {
+    throw new ApiError(404, "Booking not found");
+  }
+
+  // Prevent users from viewing someone else's ticket
+  if (booking.user._id.toString() !== req.user._id.toString()) {
+    throw new ApiError(403, "Unauthorized access");
+  }
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      booking,
+      "Booking fetched successfully"
+    )
+  );
+});
+export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket,getBookingHistory, getBookingById}
 

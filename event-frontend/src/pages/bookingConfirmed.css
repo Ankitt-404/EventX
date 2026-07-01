@@ -1,0 +1,103 @@
+.confirmedPage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(76, 90, 255, 0.35), transparent 30%),
+    radial-gradient(circle at 20% 80%, rgba(255, 184, 71, 0.2), transparent 25%),
+    #080808;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.confirmedCard {
+  width: 100%;
+  max-width: 560px;
+  padding: 38px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+}
+
+.successIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #22c55e;
+  color: #06120a;
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 22px;
+}
+
+.tag {
+  color: #9b9bff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.confirmedCard h1 {
+  margin: 12px 0 26px;
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.billBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.billBox div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.billBox span {
+  color: #bdbdb5;
+}
+
+.billBox strong {
+  text-align: right;
+}
+
+.billBox .total {
+  border-bottom: none;
+  padding-top: 8px;
+  font-size: 22px;
+}
+
+.confirmedActions {
+  margin-top: 30px;
+  display: flex;
+  gap: 14px;
+}
+
+.primaryBtn,
+.outlineBtn {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.primaryBtn {
+  background: #f7f7f2;
+  color: #080808;
+}
+
+.outlineBtn {
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}

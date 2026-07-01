@@ -1,107 +1,87 @@
 import { Link } from "react-router-dom";
-import "./home.css";
+import "./Home.css";
 
 function Home() {
   return (
-    <div className="home">
-      <div className="overlay" />
-
+    <main className="home">
       <nav className="navbar">
-        <h1 className="logo">
-          Event<span>X</span>
-        </h1>
+        <h1 className="logo">EventX</h1>
 
-        <div className="nav-links">
+        <div className="navLinks">
           <Link to="/">Home</Link>
           <Link to="/events">Events</Link>
-          <Link to="/about">About</Link>
-          <Link to="/features">Features</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
-
-        <div className="nav-actions">
-          <input type="text" placeholder="Search events..." />
-          <Link to="/login" className="login-btn">Login</Link>
-          <Link to="/register" className="register-btn">Register</Link>
+          <Link to="/auth">Login</Link>
         </div>
       </nav>
 
       <section className="hero">
-        <div className="badge">🚀 Discover. Book. Experience.</div>
+        <div className="heroText">
+          <p className="eyebrow">EVENT MANAGEMENT PLATFORM</p>
 
-        <h2>
-          Experience Events <br />
-          Like <span>Never Before</span>
-        </h2>
+          <h1>
+            Discover events.
+            <br />
+            Book experiences.
+          </h1>
 
-        <p>
-          EventX is your ultimate platform to discover amazing events,
-          book tickets seamlessly, and create unforgettable memories.
-        </p>
+          <p className="subtitle">
+            EventX helps users discover events, book tickets, and organisers
+            manage everything from one clean dashboard.
+          </p>
 
-        <div className="hero-buttons">
-          <Link to="/events" className="primary-btn">
-            Explore Events →
-          </Link>
+          <div className="heroButtons">
+            <Link to="/events" className="primaryBtn">
+              Explore Events
+            </Link>
 
-          <Link to="/create-event" className="secondary-btn">
-            Create Event 🗓
-          </Link>
+            <Link to="/auth" className="secondaryBtn">
+              Become Organiser
+            </Link>
+          </div>
         </div>
 
-        <div className="stats">
-          <div>
-            <strong>10K+</strong>
-            <p>Happy Users</p>
+        <div className="visual">
+          <div className="orb"></div>
+          <div className="cube">
+            <span></span>
           </div>
-          <div>
-            <strong>500+</strong>
-            <p>Events Hosted</p>
-          </div>
-          <div>
-            <strong>25K+</strong>
-            <p>Tickets Booked</p>
-          </div>
-          <div>
-            <strong>4.8/5</strong>
-            <p>User Rating</p>
-          </div>
+        </div>
+      </section>
+
+      <section className="stats">
+        <div>
+          <h3>500+</h3>
+          <p>Events Hosted</p>
+        </div>
+
+        <div>
+          <h3>25K+</h3>
+          <p>Tickets Booked</p>
+        </div>
+
+        <div>
+          <h3>150+</h3>
+          <p>Organisers</p>
         </div>
       </section>
 
       <section className="features">
-        <p className="section-label">WHY EVENTX?</p>
-        <h3>
-          Everything You Need for <span>Events</span>
-        </h3>
+        <div className="featureCard">
+          <h3>Book Tickets</h3>
+          <p>Simple ticket booking with instant confirmation.</p>
+        </div>
 
-        <div className="feature-grid">
-          <div className="feature-card">
-            <div className="icon">🎟</div>
-            <h4>Discover Events</h4>
-            <p>Find exciting events around you across all categories.</p>
-          </div>
+        <div className="featureCard">
+          <h3>Create Events</h3>
+          <p>Organisers can create, update, and manage events.</p>
+        </div>
 
-          <div className="feature-card blue">
-            <div className="icon">💳</div>
-            <h4>Book Tickets</h4>
-            <p>Book tickets instantly and securely in just a few clicks.</p>
-          </div>
-
-          <div className="feature-card">
-            <div className="icon">📅</div>
-            <h4>Manage Events</h4>
-            <p>Create, update, and manage your events with analytics.</p>
-          </div>
-
-          <div className="feature-card blue">
-            <div className="icon">🕘</div>
-            <h4>Booking History</h4>
-            <p>View your booked and cancelled events anytime.</p>
-          </div>
+        <div className="featureCard">
+          <h3>Track History</h3>
+          <p>Users can view booked and cancelled events.</p>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 

@@ -20,10 +20,10 @@ const bookingSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
-    statusBooked : {
+    status : {
         type : String,
-        enum : ["booked" , "cancelled"],
-        default : "booked"
+        enum : ["Booked" , "Cancelled"],
+        default : "Booked"
     }
 })
 

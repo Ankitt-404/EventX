@@ -5,21 +5,21 @@ export const getAllEvents = async () => {
   return res.data.data;
 };
 export const getMyBookings = async () => {
-  const res = await api.get("/bookings/my");
+  const res = await api.get("/booking/my-bookings");
   return res.data.data;
 };
 
 export const getBookingHistory = async () => {
-  const res = await api.get("/bookings/booking-history");
+  const res = await api.get("/booking/booking-history");
   return res.data.data;
 };
 
 export const bookEvent = async (eventId) => {
-  const res = await api.post(`/bookings/book/${eventId}`);
+  const res = await api.post(`/booking/book/${eventId}`, { tickets: Number(tickets) });
   return res.data.data;
 };
 
 export const cancelBooking = async (bookingId) => {
-  const res = await api.delete(`/bookings/cancel/${bookingId}`);
+  const res = await api.delete(`/booking/cancel/${bookingId}`);
   return res.data.data;
 };
