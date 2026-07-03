@@ -1,7 +1,11 @@
 .bookingsPage{
     min-height:100vh;
-    background:#080808;
-    color:white;
+    background:radial-gradient(circle at top,#57041afe,transparent 40%),
+        radial-gradient(circle at bottom,#081f51,transparent 40%),
+        radial-gradient(circle at right,#3b0046,transparent 20%),
+        radial-gradient(circle at left,#790d79,transparent 20%),
+        black;
+    color:rgb(255, 255, 255);
     padding:60px;
     font-family:Inter,sans-serif;
 }

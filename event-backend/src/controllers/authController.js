@@ -183,7 +183,7 @@ await OTP.create({
 });
 
 await sendEmail({
-    email,
+    to:email,
     subject:"Your EventX OTP",
     html:otpTemplate(otp)
 
@@ -236,6 +236,18 @@ return res.status(200).json({
 });
 
 });
+const getProfile = asyncHandler(async (req, res) => {
 
+    return res.status(200).json(
 
-export {registerUser,loginUser,verifyOTP,sendOTP}
+        new ApiResponse(
+            200,
+            req.user,
+            "Profile fetched successfully"
+        )
+
+    );
+
+});
+
+export {registerUser,loginUser,verifyOTP,sendOTP,getProfile}

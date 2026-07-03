@@ -13,6 +13,8 @@ import CancelBooking from './pages/cancelBooking.jsx'
 import AdminDashboard from './pages/adminDashboard.jsx'
 import AdminRoute from './components/adminRoute.jsx'
 import { AdminProvider } from './context/AdminContext.jsx'
+import Profile from './pages/profile.jsx';
+import CreateEvent from "./pages/createevent.jsx";
 function App() {
 
 
@@ -21,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<EventsPage />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/events/:eventId" element={<EventDetails/>} />
         <Route path="/book/:eventId" element={<BookingPage />} />
@@ -28,7 +31,7 @@ function App() {
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/my-ticket/:bookingId" element={<MyTicket />} />
         <Route path="/cancel-booking/:bookingId" element={<CancelBooking />} />
-
+        <Route path="/create-event" element={<CreateEvent />} />
     <Route
   path="/admin"
   element={

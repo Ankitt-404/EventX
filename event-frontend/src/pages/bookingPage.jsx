@@ -9,6 +9,7 @@ function BookingPage() {
 
   const [event, setEvent] = useState(null);
   const [tickets, setTickets] = useState(1);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -20,17 +21,21 @@ function BookingPage() {
   }, [eventId]);
 
   const handleBooking = async () => {
-    try {
-      await api.post(`/booking/book/${eventId}`, {
-        tickets: Number(tickets),
-      });
+  try {
+    await api.post(`/booking/book/${eventId}`, {
+      tickets: Number(tickets),
+    });
 
-      alert("Booking successful");
+    setShowPopup(true);
+
+    setTimeout(() => {
       navigate("/my-bookings");
-    } catch (error) {
-      alert(error.response?.data?.message || "Booking failed");
-    }
-  };
+    }, 2500);
+
+  } catch (error) {
+    alert(error.response?.data?.message || "Booking failed");
+  }
+};
 
   if (!event) return <div className="bookingLoading">Loading...</div>;
 

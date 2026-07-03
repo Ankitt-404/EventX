@@ -241,3 +241,12 @@
     padding: 24px;
   }
 }
+.navbarProfileIcon{
+    font-size: 36px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+.navbarProfileIcon:hover{
+    color: #4f8cff;
+    transform: scale(1.1);
+}

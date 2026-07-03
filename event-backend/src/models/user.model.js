@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
         index : true
     },
     username : {
-        type :String,
+        type : String,
         required : true,
         unique : true,
         lowercase : true,
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     role : {
         type : String,
         enum : ["user" , "organiser", "admin"],
-        defualt : "user"    
+        defualt: "user"    
         
     },
     

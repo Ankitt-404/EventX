@@ -1,0 +1,178 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    background:white;
+    color:#fff;
+}
+
+.profilePage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle at top,#10257afe,transparent 40%),
+        radial-gradient(circle at bottom,#033fc0,transparent 40%),
+        radial-gradient(circle at right,#1000bc,transparent 10%),
+        radial-gradient(circle at left,#0033c0,transparent 20%),
+        radial-gradient(circle at 20% 30%,#690808,transparent 15%),
+        radial-gradient(circle at 80% 70%,#a9062f,transparent 15%),
+        radial-gradient(circle at 10% 80%,#560518,transparent 20%),
+        #08000b;
+}
+
+.profileCard{
+    width:420px;
+    background:linear-gradient(135deg,#05070d,#192349 ,rgb(2, 2, 35),rgb(47, 2, 2),rgb(0, 0, 0));
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:28px;
+    padding:45px 35px;
+    text-align:center;
+    box-shadow:
+        0 0 40px rgba(37,99,235,.25),
+        0 20px 60px rgba(0,0,0,.6);
+    transition:.35s;
+}
+
+.profileCard:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 0 60px rgba(59,130,246,.45),
+        0 25px 70px rgba(0,0,0,.7);
+}
+
+.profileImage{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #3b82f6;
+    box-shadow:0 0 35px #3b82f6;
+    margin-bottom:25px;
+}
+
+.profileCard h1{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.email{
+    color:#b6bcc7;
+    font-size:15px;
+    margin-bottom:20px;
+    word-break:break-word;
+}
+
+.roleBadge{
+    display:inline-block;
+    padding:8px 22px;
+    background:linear-gradient(135deg,#b30000,#ff3467);
+    border-radius:50px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:35px;
+}
+
+.bookingBtn,
+.logoutBtn{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:16px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    margin-top:15px;
+}
+
+.bookingBtn{
+    background:linear-gradient(135deg,rgb(102, 2, 196),#1b58db,#60a5fa);
+    color:#fff;
+}
+
+.bookingBtn:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 25px #3b82f6;
+}
+
+.logoutBtn{
+    background:linear-gradient(135deg,#a0b9ff,#c78bf9);
+    color:#03022a;
+}
+
+.logoutBtn:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 25px #10012c;
+}
+  .profileAvatar{
+    width:120px;
+    height:120px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:25px;
+
+    border-radius:50%;
+    border:3px solid #3b82f6;
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 0 25px rgba(59,130,246,.5);
+}
+
+.profileCard{
+    text-align:center;
+}
+
+.profileIcon{
+    color:white;
+    font-size:70px;
+}
+@media(max-width:500px){
+
+}
+.nameSection{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-top:20px;
+}
+
+.editIcon{
+    font-size:26px;
+    color:#f2ff00;
+    cursor:pointer;
+    transition:.3s;
+    margin-top:20px;
+    margin-left:5px;
+}
+
+.editIcon:hover{
+    transform:scale(1.15);
+    color:#8ed0ff;
+}
+
+.nameInput{
+    background:#111827;
+    border:2px solid #3b82f6;
+    color:#fff;
+    padding:8px 14px;
+    border-radius:10px;
+    font-size:1.8rem;
+    font-weight:700;
+    text-align:center;
+    outline:none;
+    width:240px;
+}
+

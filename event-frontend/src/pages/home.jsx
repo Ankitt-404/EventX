@@ -1,18 +1,28 @@
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { FaRegUserCircle } from "react-icons/fa";
 
 function Home() {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  const isLoggedIn = !!localStorage.getItem("accessToken");
   return (
     <main className="home">
-      <nav className="navbar">
+    <nav className="navbar">
         <h1 className="logo">EventX</h1>
 
-        <div className="navLinks">
-          <Link to="/">Home</Link>
-          <Link to="/events">Events</Link>
-          <Link to="/auth">Login</Link>
-        </div>
-      </nav>
+    <div className="navLinks">
+      <Link to="/">Home</Link>
+      <Link to="/events">Events</Link>
+
+      {isLoggedIn ? (
+        <Link to="/profile" className="profileBtn">
+          <FaRegUserCircle className="navbarProfileIcon" />
+        </Link>
+      ) : (
+      <Link to="/auth">Login</Link>
+      )}
+    </div>
+    </nav>
 
       <section className="hero">
         <div className="heroText">

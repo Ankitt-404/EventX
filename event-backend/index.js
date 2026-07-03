@@ -3,6 +3,7 @@ dotenv.config({
     path : "./.env"
 });
 console.log(process.env.SMTP_EMAIL);
+console.log(process.env.MONGO_URI);
 
 import express from "express";
 

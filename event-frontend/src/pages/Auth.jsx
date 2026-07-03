@@ -32,6 +32,10 @@ function Auth() {
 
       localStorage.setItem("accessToken", res.data.data.accessToken);
       localStorage.setItem("role", res.data.data.user.role)
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify(res.data.data.user)
+      );
 
       navigate("/");
       alert("login successfull")
