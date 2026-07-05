@@ -513,5 +513,38 @@ const getBookingById = asyncHandler(async (req, res) => {
     )
   );
 });
-export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket,getBookingHistory, getBookingById}
+
+const getEventAttendees = asyncHandler(async (req, res) => {
+  const { eventId } = req.params;
+
+  const event = await Event.findById(eventId);
+
+  if (!event) {
+    throw new ApiError(404, "Event not found");
+  }
+
+  if (event.organiser.toString() !== req.user._id.toString()) {
+    throw new ApiError(403, "You are not the organiser of this event");
+  }
+
+  const bookings = await Booking.find({
+    event: eventId,
+    status: { $ne: "Cancelled" },
+  })
+    .populate("user", "username email fullname")
+    .select("user tickets totalAmount status createdAt");
+
+  return res.status(200).json(
+    new ApiResponse(200, bookings, "Event attendees fetched successfully")
+  );
+});
+export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket,getBookingHistory, getBookingById, getEventAttendees}
+
+//what arre the admin powers 
+//is he the the employee of an organiser 
+//side bar for CRUD events and logout 
+//search bar for saerching events by organiser category or name
+//my events in sidebar for organiser to list own events
+//admin dashboard in sidebar
+//show the details of attendees
 

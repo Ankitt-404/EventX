@@ -23,3 +23,7 @@ export const cancelBooking = async (bookingId) => {
   const res = await api.delete(`/booking/cancel/${bookingId}`);
   return res.data.data;
 };
+export const getEventAttendees = async (eventId)=>{
+  const res = await api.get(`/booking/event/${eventId}/attendees`);
+  return res.data.data
+}

@@ -39,3 +39,15 @@ app.use("/api/v1/users", Router)
 app.use("/api/v1/events", eventRouter)
 app.use("/api/v1/booking",bookingRouter)
 app.use("/api/v1/admin", adminRouter)
+
+
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  const statusCode = err.statusCode || 500;
+
+  return res.status(statusCode).json({
+    success: false,
+    message: err.message || "Internal Server Error",
+  });
+});

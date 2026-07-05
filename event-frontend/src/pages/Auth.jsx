@@ -19,10 +19,13 @@ function Auth() {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState()
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMessage("")
 
     try {
       const res = await axios.post(`${API}/login`, {
@@ -40,8 +43,9 @@ function Auth() {
       navigate("/");
       alert("login successfull")
     } catch (error) {
-      console.error(error);
-      alert(error.response?.data?.message || "Login failed");
+      setErrorMessage(
+        error.response?.data?.message || "Login failed"
+      )
     }
   };
 
@@ -70,6 +74,7 @@ function Auth() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setErrorMessage("")
 
     if (!fullname || !username || !email || !password || !role) {
       alert("Please fill all required fields.");
@@ -103,9 +108,12 @@ function Auth() {
       setPassword("");
       setOtp("");
       setOtpSent(false);
+
     } catch (error) {
-      console.error(error);
-      alert(error.response?.data?.message || "Registration failed");
+
+     setErrorMessage(
+      error.response?.data?.message || "Registration failed"
+    );
     } finally {
       setLoading(false);
     }
@@ -135,6 +143,11 @@ function Auth() {
             Register
           </button>
         </div>
+        {errorMessage && (
+  <div className="errorBox">
+    {errorMessage}
+  </div>
+)}
 
         <form
           className="auth-form"
@@ -146,14 +159,18 @@ function Auth() {
                 type="text"
                 placeholder="Full name"
                 value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
+                onChange={(e) => {setFullname(e.target.value)
+                  setErrorMessage("")
+                }}
               />
 
               <input
                 type="text"
                 placeholder="Username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {setUsername(e.target.value)
+                  setErrorMessage("")
+                }}
               />
             </>
           )}
@@ -162,14 +179,18 @@ function Auth() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {setEmail(e.target.value);
+              setErrorMessage("")
+            }}
           />
 
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {setPassword(e.target.value)
+              setErrorMessage("")
+            }}
           />
 
           {!isLogin && (
@@ -177,6 +198,7 @@ function Auth() {
               <select value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="user">User</option>
                 <option value="organiser">Organiser</option>
+                <option value="admin">Admin</option>
               </select>
 
               <button
@@ -193,7 +215,9 @@ function Auth() {
                   type="text"
                   placeholder="Enter OTP"
                   value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
+                  onChange={(e) => {setOtp(e.target.value)
+                    setErrorMessage("")
+                  }}
                 />
               )}
             </>
