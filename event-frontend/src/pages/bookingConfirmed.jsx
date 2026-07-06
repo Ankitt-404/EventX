@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import "./bookingConfirmed.css";
+import ".src/pages/bookingConfirmed.css";
 
 function BookingConfirmed() {
   const { state } = useLocation();

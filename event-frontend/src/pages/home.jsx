@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./home.css";
+import "./src/pages/home.jsx";
 import { FaRegUserCircle } from "react-icons/fa";
 
 function Home() {

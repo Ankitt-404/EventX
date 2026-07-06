@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
-import "./events.css";
+import "./src/pages/events.css";
 
 function Events() {
  const [events, setEvents] = useState([]);
