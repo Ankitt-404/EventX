@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./src/pages/createvent.css";
+import "./createvent.css";
 
 const API = "http://localhost:5000/api/v1/events/create";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./src/pages/Auth.css";
+import "./Auth.css";
 
 const API = "http://localhost:5000/api/v1/users";
 

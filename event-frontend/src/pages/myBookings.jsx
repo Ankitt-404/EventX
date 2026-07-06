@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api.js";
-import "./src/pages/myBookings.css";
+import "./myBookings.css";
 import { Link } from "react-router-dom";
 function MyBookings() {
     console.log("page loaded")

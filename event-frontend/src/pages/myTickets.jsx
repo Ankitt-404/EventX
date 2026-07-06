@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 import api from "../services/api";
-import "./src/pages/myTickets.css";
+import "./myTickets.css";
 
 function MyTicket() {
   const { bookingId } = useParams();

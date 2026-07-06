@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
-import "./src/pages/bookingPage.css";
+import "./bookingPage.css";
 
 function BookingPage() {
   const { eventId } = useParams();

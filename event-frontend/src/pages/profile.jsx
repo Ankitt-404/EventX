@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./src/pages/profile.css";
+import "./profile.css";
 import { FaRegUserCircle, FaEdit } from "react-icons/fa";
 
 function Profile() {
