@@ -1,0 +1,18 @@
+.menuButton{
+    position:fixed;
+    top:25px;
+    left:25px;
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#111827;
+    color:white;
+    cursor:pointer;
+    z-index:1000;
+    font-size:20px;
+}
+
+.dashboardContent{
+    padding:90px 40px 40px;
+}

@@ -10,7 +10,7 @@ import {
 
 import { useAdmin } from "../context/AdminContext";
 import "./AdminDashboard.css";
-
+import Sidebar from "../components/Sidebar.jsx"
 function AdminDashboard() {
   const { adminOverview, revenueChart, loading } = useAdmin();
 

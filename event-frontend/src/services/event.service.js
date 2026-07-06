@@ -26,4 +26,8 @@ export const cancelBooking = async (bookingId) => {
 export const getEventAttendees = async (eventId)=>{
   const res = await api.get(`/booking/event/${eventId}/attendees`);
   return res.data.data
-}
+};
+export const getOrganiserEvents = async () => {
+  const res = await api.get("/events/my-events");
+  return res.data.data;
+};

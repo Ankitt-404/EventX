@@ -15,13 +15,19 @@ import AdminRoute from './components/adminRoute.jsx'
 import { AdminProvider } from './context/AdminContext.jsx'
 import Profile from './pages/profile.jsx';
 import CreateEvent from "./pages/createevent.jsx";
+import DashboardLayout from './components/dashboardLayout.jsx'
+import MyEvents from './pages/myEvents.jsx'
 function App() {
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={
+          <DashboardLayout>
+          <Home />
+          </DashboardLayout>
+        } />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/auth" element={<Auth />} />
@@ -32,6 +38,14 @@ function App() {
         <Route path="/my-ticket/:bookingId" element={<MyTicket />} />
         <Route path="/cancel-booking/:bookingId" element={<CancelBooking />} />
         <Route path="/create-event" element={<CreateEvent />} />
+        <Route
+  path="/organiser/my-events"
+  element={
+    <DashboardLayout>
+      <MyEvents />
+    </DashboardLayout>
+  }
+/>
     <Route
   path="/admin"
   element={
