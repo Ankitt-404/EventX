@@ -1,12 +1,14 @@
-import transporter from "./mailer.js";
+import resend from "./mailer.js";
+
 
 
 
 export const sendEmail = async ({ to, subject, html }) => {
-  await transporter.sendMail({
-    from: process.env.SMTP_EMAIL,
-    to,
+  
+await resend.emails.send({
+  from: "onboarding@resend.dev",
+ to,
     subject,
-    html,
-  });
-};
+    html: html || `<p>${message}</p>`,
+});
+}
