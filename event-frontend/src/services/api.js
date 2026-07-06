@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://eventx-v3bk.onrender.com",
+  baseURL: "https://event-x-tau.vercel.app",
   withCredentials: true,
 });
 

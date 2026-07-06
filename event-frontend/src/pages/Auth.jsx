@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Auth.css";
 
-const API = "http://localhost:5000/api/v1/users";
+// const API = "http://localhost:5000/api/v1/users";
+
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -28,7 +29,7 @@ function Auth() {
     setErrorMessage("")
 
     try {
-      const res = await axios.post(`${API}/login`, {
+      const res = await axios.post(`${process.env.RENDER_URL}/login`, {
         email,
         password,
       });
@@ -58,7 +59,7 @@ function Auth() {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${API}/send-otp`, {
+      const res = await axios.post(`${process.env.RENDER_URL}/send-otp`, {
         email,
       });
 
@@ -89,12 +90,12 @@ function Auth() {
     try {
       setLoading(true);
 
-      await axios.post(`${API}/verify-otp`, {
+      await axios.post(`${process.env.RENDER_URL}/verify-otp`, {
         email,
         otp,
       });
 
-      const res = await axios.post(`${API}/register`, {
+      const res = await axios.post(`${process.env.RENDER_URL}/register`, {
         fullname,
         username,
         email,
