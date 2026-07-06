@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
-import "./CancelBooking.css";
+import "./cancelBooking.css";
 
 function CancelBooking() {
   const { bookingId } = useParams();

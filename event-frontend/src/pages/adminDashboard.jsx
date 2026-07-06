@@ -9,7 +9,7 @@ import {
 } from "recharts";
 
 import { useAdmin } from "../context/AdminContext";
-import "./AdminDashboard.css";
+import "./adminDashboard.css";
 import Sidebar from "../components/Sidebar.jsx"
 function AdminDashboard() {
   const { adminOverview, revenueChart, loading } = useAdmin();
