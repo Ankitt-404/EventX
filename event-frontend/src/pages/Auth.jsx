@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Auth.css";
-
 // const API = "http://localhost:5000/api/v1/users";
 
 
@@ -29,7 +28,8 @@ function Auth() {
     setErrorMessage("")
 
     try {
-      const res = await axios.post(`${process.env.RENDER_URL}/login`, {
+      const res = await axios.post(`${import.meta.env.VITE_RENDER_URL}/users/login`, {
+      // const res = await axios.post(`${import.meta.env.RENDER_URL}/users/login`, {
         email,
         password,
       });
@@ -59,7 +59,8 @@ function Auth() {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${process.env.RENDER_URL}/send-otp`, {
+      // const res = await axios.post(`${process.env.RENDER_URL}/send-otp`, {
+      const res = await axios.post(`${import.meta.env.VITE_RENDER_URL}/users/send-otp`, {
         email,
       });
 
@@ -90,12 +91,18 @@ function Auth() {
     try {
       setLoading(true);
 
-      await axios.post(`${process.env.RENDER_URL}/verify-otp`, {
+      // await axios.post(`${process.env.RENDER_URL}/verify-otp`, {
+      // await axios.post(`${process.env.RENDER_URL}/verify-otp`, {
+      //   email,
+      //   otp,
+      // });
+      await axios.post(`${import.meta.env.VITE_RENDER_URL}/users/verify-otp`, {
         email,
         otp,
       });
 
-      const res = await axios.post(`${process.env.RENDER_URL}/register`, {
+      // const res = await axios.post(`${process.env.RENDER_URL}/register`, {
+      const res = await axios.post(`${import.meta.env.VITE_RENDER_URL}/users/register`, {
         fullname,
         username,
         email,

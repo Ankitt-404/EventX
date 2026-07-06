@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
-dotenv.config({
-    path : "./.env"
-});
+import dotenv from "dotenv/config";
+// dotenv.config({
+//     path : "./.env"
+// });
 console.log(process.env.SMTP_EMAIL);
 console.log(process.env.MONGO_URI);
 
@@ -22,6 +22,7 @@ const app = express();
 
 app.use(cors({
     origin : "https://event-x-tau.vercel.app",
+    // origin : "http://localhost:5173",
     credentials : true
 }));
 app.use(express.json());

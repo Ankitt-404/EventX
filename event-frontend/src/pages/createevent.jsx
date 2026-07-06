@@ -46,8 +46,10 @@ function CreateEvent() {
       formData.append("banner", banner);
 
       const token = localStorage.getItem("accessToken");
+        const api = import.meta.env.VITE_RENDER_URL
 
-      const res = await axios.post(API, formData, {
+      // const res = await axios.post(process.env.RENDER_URL, formData, {
+      const res = await axios.post(`api/${"events/create"}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

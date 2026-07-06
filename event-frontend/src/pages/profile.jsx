@@ -15,7 +15,8 @@ function Profile() {
     const fetchProfile = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.RENDER_URL}/profile`,
+          // `${process.env.RENDER_URL}/profile`,
+          `${import.meta.env.VITE_RENDER_URL}/users/profile`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
