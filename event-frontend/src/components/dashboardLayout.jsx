@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import Sidebar from "./Sidebar";
-import "./DashboardLayout.css";
+import Sidebar from "./sideBar.jsx";
+import "./dashboardLayout.css";
 
 function DashboardLayout({ children }) {
   const [open, setOpen] = useState(false);
