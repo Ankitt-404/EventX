@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
 const app = express();
 
 app.use(cors({
-    origin : "http://localhost:5173",
+    origin : "https://event-2ht6m8gqc-ankitjaiswal1153-2219s-projects.vercel.app",
     credentials : true
 }));
 app.use(express.json());
