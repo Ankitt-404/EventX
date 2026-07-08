@@ -15,6 +15,5 @@ bookingRouter.get("/my-bookings", verifyJWT, getUserBookings);
 bookingRouter.delete("/cancel/:bookingId", verifyJWT, cancelTicket);
 bookingRouter.get("/booking-history", verifyJWT, getBookingHistory)
 bookingRouter.get("/:bookingId", verifyJWT, getBookingById);
-bookingRouter.get("/event/:eventId/attendees",verifyJWT,getEventAttendees);
 
 export default bookingRouter

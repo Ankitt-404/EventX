@@ -96,7 +96,7 @@ function Profile() {
           {localStorage.getItem("role") === "organiser" && (
   <button
     className="addBtn"
-    onClick={() => navigate("/create-event")}
+    onClick={() => navigate("/create")}
   >
     Add Event
   </button>

@@ -1,0 +1,67 @@
+.attendeesPage {
+  min-height: 100vh;
+  background: #080808;
+  color: white;
+  padding: 50px;
+  font-family: Inter, sans-serif;
+}
+
+.attendeesHeader p {
+  color: #9b9bff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.attendeesHeader h1 {
+  font-size: 60px;
+  margin: 10px 0 40px;
+  letter-spacing: -3px;
+}
+
+.emptyText {
+  color: #c9c9c0;
+}
+
+.attendeesTable {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+}
+
+.tableHead,
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr .7fr .8fr .9fr 1fr;
+  gap: 16px;
+  padding: 18px 22px;
+  align-items: center;
+}
+
+.tableHead {
+  background: rgba(255,255,255,0.08);
+  color: #9b9bff;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.tableRow {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: #e5e7eb;
+}
+
+@media (max-width: 900px) {
+  .attendeesPage {
+    padding: 28px;
+  }
+
+  .tableHead {
+    display: none;
+  }
+
+  .tableRow {
+    grid-template-columns: 1fr;
+  }
+}

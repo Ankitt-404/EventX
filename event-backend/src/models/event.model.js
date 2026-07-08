@@ -31,13 +31,13 @@ const eventSchema = new mongoose.Schema({
     status : {
         type : String,
         enum : [
-            "pending",
-            "draft",
+            "Pending",
+            "Draft",
             "Approved",
             "Cancelled",
             "Rejected"
         ],
-        default : "pending"
+        default : "Pending"
     },
 
     organiser : {

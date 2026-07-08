@@ -17,6 +17,8 @@ import Profile from './pages/profile.jsx';
 import CreateEvent from "./pages/createevent.jsx";
 import DashboardLayout from './components/dashboardLayout.jsx'
 import MyEvents from './pages/myEvents.jsx'
+import AdminPendingEvents from './pages/adminPendingEvents.jsx'
+import EventAttendees from './pages/eventAttendees.jsx'
 function App() {
 
 
@@ -37,12 +39,20 @@ function App() {
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/my-ticket/:bookingId" element={<MyTicket />} />
         <Route path="/cancel-booking/:bookingId" element={<CancelBooking />} />
-        <Route path="/create-event" element={<CreateEvent />} />
+        <Route path="/create" element={<CreateEvent />} />
         <Route
   path="/organiser/my-events"
   element={
     <DashboardLayout>
       <MyEvents />
+    </DashboardLayout>
+  }
+/>
+<Route
+  path="/admin/pending-events"
+  element={
+    <DashboardLayout>
+      <AdminPendingEvents />
     </DashboardLayout>
   }
 />
@@ -54,6 +64,14 @@ function App() {
         <AdminDashboard />
       </AdminRoute>
     </AdminProvider>
+  }
+/>
+<Route
+  path="/organiser/events/:eventId/attendees"
+  element={
+    <DashboardLayout>
+      <EventAttendees />
+    </DashboardLayout>
   }
 />
  </Routes>

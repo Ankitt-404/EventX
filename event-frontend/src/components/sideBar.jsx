@@ -26,7 +26,7 @@ function Sidebar({ open, setOpen }) {
         <>
           
 
-          <Link onClick={() => setOpen(false)} to="/create-event">
+          <Link onClick={() => setOpen(false)} to="/create">
             Create Event
           </Link>
 
@@ -43,9 +43,14 @@ function Sidebar({ open, setOpen }) {
       )}
 
       {role === "admin" && (
+        <>
         <Link onClick={() => setOpen(false)} to="/admin">
           Admin Dashboard
         </Link>
+         <Link onClick={() => setOpen(false)} to="/admin/pending-events">
+      Pending Events
+    </Link>
+        </>
       )}
 
       <button onClick={logout}>Logout</button>

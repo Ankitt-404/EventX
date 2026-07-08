@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./createvent.css";
-
+import api from "../services/api.js";
 // const API = "http://localhost:5000/api/v1/events/create";
 
 function CreateEvent() {
@@ -49,7 +49,7 @@ function CreateEvent() {
         const api = import.meta.env.VITE_RENDER_URL
 
       // const res = await axios.post(process.env.RENDER_URL, formData, {
-      const res = await axios.post(`api/${"events/create"}`, formData, {
+      const res = await axios.post(`${api}/events/create`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

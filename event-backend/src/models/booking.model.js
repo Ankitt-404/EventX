@@ -24,7 +24,11 @@ const bookingSchema = new mongoose.Schema({
         type : String,
         enum : ["Booked" , "Cancelled"],
         default : "Booked"
+    },
+},
+{
+        timestamps : true
     }
-})
+)
 
 export const Booking = mongoose.model("Booking", bookingSchema)

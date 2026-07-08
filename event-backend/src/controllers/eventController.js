@@ -145,6 +145,7 @@ const updateEvent = asyncHandler(async(req,res)=>{
         ticketPrice,
         totalSeats,
         category
+        
     } = req.body
 
     const event = await Event.findById(eventId)
@@ -538,6 +539,48 @@ const getEventAttendees = asyncHandler(async (req, res) => {
     new ApiResponse(200, bookings, "Event attendees fetched successfully")
   );
 });
+
+export const UpdateEventStatus = asyncHandler(async(req,res)=>{
+  const { eventId } = req.params;
+  const { status } = req.body;
+
+  const allowedStatuses = ["pending", "Approved", "Rejected", "Draft", "Cancelled"];
+
+  if (!status) {
+    throw new ApiError(400, "Status is required");
+  }
+
+  if (!allowedStatuses.includes(status)) {
+    throw new ApiError(400, "Invalid event status");
+  }
+
+  const event = await Event.findByIdAndUpdate(
+    eventId,
+    {
+      $set: {
+        status,
+      },
+    },
+    {
+      new: true,
+    }
+  ).populate("organiser", "username email");
+
+  if (!event) {
+    throw new ApiError(404, "Event not found");
+  }
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      event,
+      "Event status updated successfully"
+    )
+  );
+});
+
+
+
 export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEventDetails,getOrganizerEvents,getUserBookings, cancelTicket,getBookingHistory, getBookingById, getEventAttendees}
 
 //what arre the admin powers 
@@ -547,4 +590,3 @@ export {createEvent, updateEvent , deleteEvent, bookEvent,getAllEvents, getEvent
 //my events in sidebar for organiser to list own events
 //admin dashboard in sidebar
 //show the details of attendees
-
