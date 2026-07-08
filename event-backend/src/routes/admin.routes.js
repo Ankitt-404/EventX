@@ -13,8 +13,8 @@ import { getEventAttendees, UpdateEventStatus } from "../controllers/eventContro
 
 const adminRouter = Router();
 
-// adminRouter.use(verifyJWT);
-// adminRouter.use(verifyAdmin);
+adminRouter.use(verifyJWT);
+adminRouter.use(verifyAdmin);
 adminRouter.get("/overview", getAdminOverview);
 adminRouter.get("/revenue-chart", getRevenueChart);
 adminRouter.get("/events/pending-events", getPendingEvents);
